@@ -1,11 +1,35 @@
-// import { useState } from "react";
-// import reactLogo from "./assets/react.svg";
-// import viteLogo from "/vite.svg";
-import "./App.css";
+import { useState, useEffect } from "react";
 
-function App() {
-  let greeting = "Hello World";
-  return <h1>{greeting}</h1>;
-}
+const Card = ({ title }) => {
+  const [isLiked, setIsLiked] = useState(false);
 
-export default App;
+  useEffect(() => {
+    console.log(
+      `Card with title "${title}" is ${isLiked ? "liked" : "not liked"}`
+    );
+  });
+
+  return (
+    <div className="card">
+      <h2>{title}</h2>
+      <button
+        className="material-symbols-outlined"
+        onClick={() => setIsLiked(!isLiked)}
+      >
+        {isLiked ? "heart_check" : "favorite"}
+      </button>
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <div className="card-container">
+      <Card title="Star Wars" />
+      <Card title="Avatar" />
+      <Card title="Lion King" />
+    </div>
+  );
+};
+
+export { App };
